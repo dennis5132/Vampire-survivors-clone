@@ -3,19 +3,19 @@ using static Interfaces;
 
 public class LevelCurrencyScript : MonoBehaviour, IGrabbable
 {
-    [SerializeField] private UpgradeMenu menu;
+    private UpgradeMenu menu;
     [SerializeField] private float spread = 5;
     public void OnGrab()
     {
-        PoolManager.instance.EnqueuPooledItem(this.gameObject);
+        PoolManager.instance.EnqueuPooledItem(gameObject);
         menu.AddCurrency();
         //Debug.Log("grabbed");
         //throw new System.NotImplementedException();
     }
 
-    public void OnSpawn(Vector2 l)
+    public void OnSpawn(Vector2 pos)
     {
-        transform.position = new Vector2(Random.Range(-spread + l.x, spread + l.x), Random.Range(-spread + l.y,spread + l.y));
+        transform.position = new Vector2(Random.Range(-spread + pos.x, spread + pos.x), Random.Range(-spread + pos.y,spread + pos.y));
         //throw new System.NotImplementedException();
     }
 
@@ -25,9 +25,4 @@ public class LevelCurrencyScript : MonoBehaviour, IGrabbable
         menu = GameObject.Find("weaponMenuManager").GetComponent<UpgradeMenu>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

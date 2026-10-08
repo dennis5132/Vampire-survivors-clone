@@ -37,6 +37,7 @@ public class testEnemyScript : MonoBehaviour,IEnemyable,IDamageable
         data = SO;
         powerUp = Mathf.Pow(data.powerIncrease,wave);
         HP = data.health*powerUp;
+        gameObject.GetComponent<SpriteRenderer>().color = SO.Color;
     }
 
     public void Takedamage(float damage)
@@ -55,13 +56,17 @@ public class testEnemyScript : MonoBehaviour,IEnemyable,IDamageable
 
     public void Die()
     {
-        Debug.Log("dropped");
-        int x = (int)(data.dropRatio*powerUp);
-        for (int i = 0; i < x; i++)
+        int dropAmount = (int)(data.dropRatio*powerUp);
+        dropAmount= Random.Range(dropAmount/2,dropAmount*2);
+        for (int i = 0; i < dropAmount; i++)
         {
             GameObject newDrop = PoolManager.instance.DeQueuPooledItem("levelCurrency");
             newDrop.GetComponent<IGrabbable>().OnSpawn(transform.position);
-            
+        }
+        if (data.dropChance > Random.Range(1, 100))
+        {
+            GameObject newDrop = PoolManager.instance.DeQueuPooledItem("levelCurrency");
+            newDrop.GetComponent<IGrabbable>().OnSpawn(transform.position);
         }
         
         PoolManager.instance.EnqueuPooledItem(gameObject);

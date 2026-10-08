@@ -10,6 +10,8 @@ public class enemySO : ScriptableObject
 
     public float spawnTime;
     public int dropRatio;
+    public float dropChance;
+
     public GameObject Object;
     public float powerIncrease;
 

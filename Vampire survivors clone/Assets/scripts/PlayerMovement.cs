@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using static Interfaces;
 
 public class PlayerMovement : MonoBehaviour, IDamageable
@@ -108,6 +109,7 @@ public class PlayerMovement : MonoBehaviour, IDamageable
     public void Die()
     {
         //SceneManager.LoadScene("MenuScene");
+        Application.Quit();//
         throw new NotImplementedException();
     }
 }

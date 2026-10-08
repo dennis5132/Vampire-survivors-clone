@@ -20,4 +20,4 @@ MonoBehaviour:
   dropRatio: 24
   Object: {fileID: 5105659383325823780, guid: 28d43a4852baa5f4099d4ea628b593f3, type: 3}
   powerIncrease: 0
-  Color: {r: 0.10345395, g: 0.2603773, b: 0.095799156, a: 0}
+  Color: {r: 0.25882354, g: 0.09411764, b: 0.24969949, a: 1}

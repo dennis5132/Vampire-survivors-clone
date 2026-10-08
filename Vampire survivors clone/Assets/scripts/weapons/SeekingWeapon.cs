@@ -24,6 +24,7 @@ public class SeekingWeapon : MonoBehaviour, IWeaponable
             if (h.Length !=0)
             {
                 hit = h[0];
+                
                 if (hit.rigidbody.gameObject.GetComponent<IEnemyable>() != null)
                 {
                         aHit = true;

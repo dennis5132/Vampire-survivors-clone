@@ -107,7 +107,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d409172e61cca3f44bb2955159ef9e51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  spread: 0
+  menu: {fileID: 0}
+  spread: 5
 --- !u!50 &4064577261229112164
 Rigidbody2D:
   serializedVersion: 5

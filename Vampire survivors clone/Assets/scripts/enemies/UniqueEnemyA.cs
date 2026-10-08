@@ -13,7 +13,7 @@ public class UniqueEnemyA : MonoBehaviour, IEnemyable
     private int wav;
 
     private List<GameObject> enemies = new List<GameObject>();
-    private int liveTime = 5;
+    private int liveTime = 50;
 
     public void applySO(enemySO SO, int wave)
     {
@@ -43,7 +43,7 @@ public class UniqueEnemyA : MonoBehaviour, IEnemyable
     }
     IEnumerator endThem()
     {
-        yield return new WaitForSeconds(50);
+        yield return new WaitForSeconds(liveTime);
         int x = enemies.Count;
         for (int i = 0; i < enemies.Count; i++)
         {

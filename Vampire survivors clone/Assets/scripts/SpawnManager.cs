@@ -30,7 +30,7 @@ public class SpawnManager : MonoBehaviour
     }
     private void ResetWaves()
     {
-        Debug.Log(waveAmount);
+        Debug.Log(waveAmount+"wave repeats");
         waveTimer = 0;
         for (int i = 0; i < wavesDone.Length; i++)
         {
@@ -46,7 +46,8 @@ public class SpawnManager : MonoBehaviour
         {
             if (wave.startTime < waveTimer && wavesDone[z]==false)
             {
-                wavesDone[z]= true;
+                Debug.Log($"wave {z+1} start");
+                wavesDone[z] = true;
                 int j = 0;
                 foreach (WaveEnemy waveEnemy in wave.enemies)
                 {
@@ -77,7 +78,7 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    IEnumerator SpawnEnemy(WaveEnemy whichOne,float delay)
+    IEnumerator SpawnEnemy(WaveEnemy whichOne, float delay)
     {
         yield return new WaitForSeconds(delay);
         var loc = player.rb.position;

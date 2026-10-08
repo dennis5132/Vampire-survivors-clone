@@ -20,4 +20,4 @@ MonoBehaviour:
   dropRatio: 48
   Object: {fileID: 0}
   powerIncrease: 1.5
-  Color: {r: 0.2905661, g: 0.2905661, b: 0.2905661, a: 0}
+  Color: {r: 0.2905661, g: 0.2905661, b: 0.2905661, a: 1}

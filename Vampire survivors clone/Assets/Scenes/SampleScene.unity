@@ -1975,7 +1975,7 @@ MonoBehaviour:
   action: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   rb: {fileID: 1282182062}
   moveSpeed: 0.2
-  HP: 100
+  HP: 20
   weaponLevels: 
   weapons:
   - {fileID: 147809796}
