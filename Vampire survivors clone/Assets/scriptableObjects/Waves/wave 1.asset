@@ -16,8 +16,5 @@ MonoBehaviour:
   enemies:
   - enemy: {fileID: 5105659383325823780, guid: 28d43a4852baa5f4099d4ea628b593f3, type: 3}
     enemyData: {fileID: 11400000, guid: f9464a7bdab52814a8876f552011a455, type: 2}
-    count: 10
-  - enemy: {fileID: 5105659383325823780, guid: 28d43a4852baa5f4099d4ea628b593f3, type: 3}
-    enemyData: {fileID: 11400000, guid: f9464a7bdab52814a8876f552011a455, type: 2}
-    count: 20
+    count: 5
   spawnSpeed: 0.2

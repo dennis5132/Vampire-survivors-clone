@@ -28,7 +28,7 @@ public class testEnemyScript : MonoBehaviour,IEnemyable,IDamageable
         if (collision.gameObject == player.gameObject)
         {
             collision.gameObject.GetComponent<IDamageable>().Takedamage(data.damage * powerUp * Time.deltaTime);
-            Takedamage(data.damage);//
+            //Takedamage(data.damage);//
         } 
     }
 

@@ -12,4 +12,6 @@ public class enemySO : ScriptableObject
     public int dropRatio;
     public GameObject Object;
     public float powerIncrease;
+
+    public Color Color;
 }

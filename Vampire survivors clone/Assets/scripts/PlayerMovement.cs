@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 using static Interfaces;
 
 public class PlayerMovement : MonoBehaviour, IDamageable
@@ -18,9 +17,12 @@ public class PlayerMovement : MonoBehaviour, IDamageable
 
     public int[] weaponLevels = new int[0];
     float[] WeaponTimers= new float[0];
-    [SerializeField] private GameObject[] weapons = new GameObject[/*amountof weapons*/0];
+    [SerializeField] private GameObject[] weapons = new GameObject[0];
     public IWeaponable[] weapons_ = new IWeaponable[0];
     [SerializeField] private int startWeapon=0;
+
+    [SerializeField] private TextMeshProUGUI healthTxt;
+    
     //public IWeaponable x;
     private void OnEnable()
     {
@@ -56,6 +58,8 @@ public class PlayerMovement : MonoBehaviour, IDamageable
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        healthTxt.text = $"health: {(int)HP}";
+
     }
     private void Update()
     {
@@ -89,7 +93,7 @@ public class PlayerMovement : MonoBehaviour, IDamageable
     public void Takedamage(float damage)
     {
         HP -= damage;
-        //Debug.Log(HP);
+        healthTxt.text = $"health: {HP}";
         if (HP < 0) 
         {
             Die();

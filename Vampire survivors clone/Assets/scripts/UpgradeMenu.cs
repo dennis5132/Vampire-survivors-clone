@@ -1,7 +1,6 @@
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class UpgradeMenu : MonoBehaviour
@@ -15,6 +14,8 @@ public class UpgradeMenu : MonoBehaviour
     [SerializeField] private int levelCost = 40;
     [SerializeField] private float levelCostIncrease= 1.2f;
     private int pendingUpgrades;
+
+    [SerializeField] private TextMeshProUGUI XPTxt;
     private int NextLevel()
     {
         int level = 0;
@@ -22,7 +23,7 @@ public class UpgradeMenu : MonoBehaviour
         {
             level += i;
         }
-        Debug.Log($"level: {player.weaponLevels[0]}, {levelCost * Mathf.Pow(levelCostIncrease, level)}");
+        //Debug.Log($"level: {player.weaponLevels[0]}, {levelCost * Mathf.Pow(levelCostIncrease, level)}");
         return (int) (levelCost*Mathf.Pow(levelCostIncrease, level));
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -30,20 +31,27 @@ public class UpgradeMenu : MonoBehaviour
     {
         menu = transform.GetChild(0).gameObject;
         menu.SetActive(false);
+        XPTxt.text = $"XP: 0%";
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if (Keyboard.current.spaceKey.wasReleasedThisFrame && menu.activeSelf == false)
+        //if (Keyboard.current.spaceKey.wasReleasedThisFrame && menu.activeSelf == false)
+        //{
+        //    Debug.Log("upgrade");
+        //    NewUpgrade();
+        //}
+        XPTxt.text = $"XP: {(float)currency / (float)NextLevel() * 100}%";
+        if (currency >= NextLevel())
         {
-            Debug.Log("upgrade");
+            pendingUpgrades++;
             NewUpgrade();
         }
     }
     private void NewUpgrade()
     {
-        if (pendingUpgrades < 1)
+        if (pendingUpgrades < 1 && !menu.activeSelf)
         { return; }
         Time.timeScale = 0;
         pendingUpgrades--;
@@ -58,7 +66,8 @@ public class UpgradeMenu : MonoBehaviour
             }
             pickables[i] = x;
             btn[i].gameObject.GetComponentInChildren<TextMeshProUGUI>().text = player.weapons_[x].Name +" to level "+ (player.weaponLevels[x]+1);
-            btn[i].onClick.AddListener(() => selectWeapon(x));
+            int XY = x;
+            btn[i].onClick.AddListener(() => selectWeapon(XY));
         }
         
     }
@@ -77,11 +86,5 @@ public class UpgradeMenu : MonoBehaviour
     public void AddCurrency()
     {
         currency++;
-        if (currency >= NextLevel()) 
-        {
-            pendingUpgrades++;
-            NewUpgrade();
-        }
-        
     }
 }

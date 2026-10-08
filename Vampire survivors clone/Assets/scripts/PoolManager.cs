@@ -29,7 +29,7 @@ public class PoolManager : MonoBehaviour
                 newEnemy.transform.parent = item.parent;
                 queue.Enqueue(newEnemy);
             }
-                objectsDictionary.Add(item.obj.name, queue);
+                objectsDictionary.Add(item.name, queue);
         }
     }
     public GameObject DeQueuPooledItem(string item)

@@ -12,9 +12,10 @@ public class Interfaces
     
     public interface IWeaponable
     {
-        string Name { get; }
+        string Name { get;}
+        //int Lvl { get; set; }
         void DoAttack(int Level);
-        int GetAttackSpeed();
+        float GetAttackSpeed();
 
     };
     public interface IEnemyable
