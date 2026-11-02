@@ -5,6 +5,8 @@ public class SeekingWeaponInstance : MonoBehaviour
 {
     public SeekingWeapon parent;
     private int liveTime;
+
+    public float Damage;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -24,7 +26,7 @@ public class SeekingWeaponInstance : MonoBehaviour
         IDamageable x = collision.gameObject.GetComponent<IDamageable>();
         if (x != null)
         {
-            x.Takedamage(parent.SO.attackPower);
+            x.Takedamage(Damage);
             PoolManager.instance.EnqueuPooledItem(gameObject);
         }
     }

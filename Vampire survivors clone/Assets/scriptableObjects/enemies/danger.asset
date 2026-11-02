@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fb96af1ccc4bf149bb2c9194bb4537c, type: 3}
   m_Name: danger
   m_EditorClassIdentifier: Assembly-CSharp::enemySO
-  entityName: 
+  prefabName: test
   damage: 48
   health: 480
-  speed: 0.1
+  speed: 0.05
   spawnTime: 0.1
-  dropRatio: 48
-  Object: {fileID: 0}
+  dropRatio: 96
+  dropChance: 5
   powerIncrease: 1.5
   Color: {r: 0.2905661, g: 0.2905661, b: 0.2905661, a: 1}

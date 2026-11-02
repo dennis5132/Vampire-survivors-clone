@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Interfaces
@@ -13,9 +12,8 @@ public class Interfaces
     public interface IWeaponable
     {
         string Name { get;}
-        //int Lvl { get; set; }
         void DoAttack(int Level);
-        float GetAttackSpeed();
+        float GetAttackSpeed(int Level);
 
     };
     public interface IEnemyable
@@ -24,7 +22,7 @@ public class Interfaces
     }
     public interface IGrabbable 
     {
-        public void OnSpawn(Vector2 location);
+        public void OnSpawn(Vector2 location, int amount);
         public void OnGrab();
     }
 }

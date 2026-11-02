@@ -8,18 +8,24 @@ public class CirclingWeaponInstance : MonoBehaviour
     private float moveTime;
     private float time=0;
     private int timeAroundPlayer=110;
-    float radius = 0;
+    public float radius = 0;
+    //public float Damage;
     [SerializeField] float radiusMax = 1;
-    public CirclingWeapon parent;
+    //public CirclingWeapon parent;
     [SerializeField] private float baseSpeed;
 
+    public float Damage;
+    Transform playerPos;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public void Begin()
+    public void Begin(float EndTime,Transform player,float timesAround)
     {
-        moveTime = parent.endTime;
+        moveTime = EndTime;
         time = 0;
-        transform.position = parent.player.position;
-        timeAroundPlayer = (int)parent.timesAround;
+        transform.position = player.position;
+        timeAroundPlayer = (int)timesAround;
+
+        playerPos = player;
     }
     //ontriggerenter: doDamage
     private void OnTriggerEnter2D(Collider2D collision)
@@ -27,7 +33,7 @@ public class CirclingWeaponInstance : MonoBehaviour
         IDamageable collide = collision.gameObject.GetComponent<IDamageable>();
         if (collide != null)
         {
-            collide.Takedamage(parent.SO.attackPower);
+            collide.Takedamage(Damage);
         }
     }
     private void FixedUpdate()
@@ -45,15 +51,15 @@ public class CirclingWeaponInstance : MonoBehaviour
                 // distance from player also based on formula
                      float moveAway = time / 2;//
             
-                     radius += moveAway;//
+                     //radius += moveAway;//
                      moveAway-=radiusMax;//
-            radius = parent.SO.distance;
+            //radius = parent.SO.distance;
             //Debug.Log(radius);
                 // generate circle
                      float circleposition = i / (float)timeAroundPlayer;
                      float x = Mathf.Sin(circleposition * Mathf.PI * 2.0f) * radius;
                      float z = Mathf.Cos(circleposition * Mathf.PI * 2.0f) * radius;
-                     point = new Vector2(x+ parent.player.position.x, z+ parent.player.position.y)/*+transform.parent.position*/;
+                     point = new Vector2(x+ playerPos.position.x, z+ playerPos.position.y)/*+transform.parent.position*/;
 
             //move towards point
             transform.position = Vector2.MoveTowards(transform.position,point,baseSpeed);

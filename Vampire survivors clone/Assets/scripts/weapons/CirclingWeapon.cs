@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using NUnit.Framework;
 using UnityEngine;
 using static Interfaces;
 
@@ -27,13 +26,16 @@ public class CirclingWeapon : MonoBehaviour, IWeaponable
         //add to active
         active.Add(x.GetComponent<CirclingWeaponInstance>());
         //parent=this
-        x.GetComponent<CirclingWeaponInstance>().parent = this;
-        x.GetComponent<CirclingWeaponInstance>().Begin();
+        var instance = x.GetComponent<CirclingWeaponInstance>();
+        //instance.parent = this;
+        instance.Begin(endTime,player,timesAround);
+        instance.Damage = SO.attackPower*Mathf.Pow(SO.powerMod,Level);
+        instance.radius = SO.distance*Mathf.Pow(SO.distanceMod,Level);
     }
 
-    public float GetAttackSpeed()
+    public float GetAttackSpeed(int Level)
     {
-        return SO.attackSpeed;
+        return SO.attackSpeed * Mathf.Pow(SO.speedMod,Level);
         //throw new System.NotImplementedException();
     }
 

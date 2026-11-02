@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using static Interfaces;
 
 public class SpawnManager : MonoBehaviour
@@ -57,6 +57,7 @@ public class SpawnManager : MonoBehaviour
                         StartCoroutine(SpawnEnemy(waveEnemy, wave.spawnSpeed * j));
                     }
                 }
+                StartCoroutine(EndWave(wave.spawnSpeed * j, z));
             }
             z++;
         }
@@ -70,14 +71,18 @@ public class SpawnManager : MonoBehaviour
                     amount++;
                 }
             }
-            if (amount == 0)
+            if (amount == 0 && wavesDone[wavesDone.Length-1])
             {
                 waveAmount++;
                 ResetWaves();
             }
         }
     }
-
+    IEnumerator EndWave(float delay, int wave)
+    {
+        yield return new WaitForSeconds(delay);
+        Debug.Log($"wave {wave + 1} ended at {waveTimer}");
+    }
     IEnumerator SpawnEnemy(WaveEnemy whichOne, float delay)
     {
         yield return new WaitForSeconds(delay);
@@ -88,8 +93,13 @@ public class SpawnManager : MonoBehaviour
             spawnLocation = new Vector2(UnityEngine.Random.Range(-spawnArea.x , spawnArea.x ), UnityEngine.Random.Range(-spawnArea.y, spawnArea.y));
         }
         //GameObject newEnemy = Instantiate(whichOne.enemy);//
-        GameObject newEnemy = PoolManager.instance.DeQueuPooledItem(whichOne.enemyData.name);
-        newEnemy.GetComponent<IEnemyable>().applySO(whichOne.enemyData, waveAmount);
+        GameObject newEnemy = PoolManager.instance.DeQueuPooledItem(whichOne.enemy.name);
+        if (newEnemy == null) { Debug.LogError(whichOne.enemyData.prefabName+"was not pooled"); }
+        var x = newEnemy.GetComponent<IEnemyable>();
+        if (x != null)
+        {
+            x.applySO(whichOne.enemyData, waveAmount);
+        }
         newEnemy.transform.position = spawnLocation+loc;
     }
     private void Update()

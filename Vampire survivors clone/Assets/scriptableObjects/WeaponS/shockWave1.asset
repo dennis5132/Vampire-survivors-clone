@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: shockWave1
   m_EditorClassIdentifier: Assembly-CSharp::WeaponSO
   thisName: shockwave
-  attackPower: 10
+  attackPower: 2
   attackSpeed: 300
   range: 0.5
   distance: 4
-  powerMod: 0
-  speedMod: 0
-  rangeMod: 0
-  distanceMod: 0
+  powerMod: 1.5
+  speedMod: 1
+  rangeMod: 1
+  distanceMod: 1.1

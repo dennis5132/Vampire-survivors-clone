@@ -22,14 +22,15 @@ public class ShockWaveWeapon : MonoBehaviour, IWeaponable
         if (Level == 0) { return; }
         slowdown = SO.range;
         wave.transform.localScale = new Vector2(0, 0);
-        animationSpeed = SO.distance;
+        wave.GetComponent<ShockWaveWeaponInstance>().Damage = SO.attackPower * Mathf.Pow(SO.powerMod, Level); 
+        animationSpeed = SO.distance* Mathf.Pow(SO.distanceMod, Level); 
         currentSpeed = animationSpeed;
         wave.SetActive(true);
     }
 
-    public float GetAttackSpeed()
+    public float GetAttackSpeed(int Level)
     {
-        return SO.attackSpeed;
+        return SO.attackSpeed * Mathf.Pow(SO.speedMod, Level);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -48,7 +49,7 @@ public class ShockWaveWeapon : MonoBehaviour, IWeaponable
             currentSpeed -= slowdown;
             spriteR.color = new Color(1f, 1f, 1f, visibility);
 
-            Debug.Log(currentSpeed);
+            //Debug.Log(currentSpeed);
             if (currentSpeed <= 0)
             {
                 wave.SetActive(false);

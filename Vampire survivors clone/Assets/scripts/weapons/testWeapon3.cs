@@ -14,7 +14,7 @@ public class testWeapon3 : MonoBehaviour, IWeaponable
         //throw new System.NotImplementedException();
     }
 
-    public float GetAttackSpeed()
+    public float GetAttackSpeed(int Level)
     {
         return 50;
         //throw new System.NotImplementedException();

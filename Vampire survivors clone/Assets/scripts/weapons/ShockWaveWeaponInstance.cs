@@ -4,6 +4,7 @@ using static Interfaces;
 public class ShockWaveWeaponInstance : MonoBehaviour
 {
     private ShockWaveWeapon parent;
+    public float Damage;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,7 +21,7 @@ public class ShockWaveWeaponInstance : MonoBehaviour
         IDamageable collide = collision.gameObject.GetComponent<IDamageable>();
         if (collide != null)
         {
-            collide.Takedamage(parent.SO.attackPower * parent.visibility);
+            collide.Takedamage(Damage * parent.visibility);
         }
     }
 }

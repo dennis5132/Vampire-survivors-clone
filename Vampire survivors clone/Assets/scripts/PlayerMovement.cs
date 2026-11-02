@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Xml.XPath;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,6 +14,7 @@ public class PlayerMovement : MonoBehaviour, IDamageable
     private InputAction m_move;
     private Vector2 moveAmt;
     public Rigidbody2D rb;
+    private SpriteRenderer rbSprite;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float HP = 10;
     //private Enum moveDirection
@@ -22,7 +25,10 @@ public class PlayerMovement : MonoBehaviour, IDamageable
     public IWeaponable[] weapons_ = new IWeaponable[0];
     [SerializeField] private int startWeapon=0;
 
-    [SerializeField] private TextMeshProUGUI healthTxt;
+    //[SerializeField] private TextMeshProUGUI healthTxt;
+    [SerializeField] private RectTransform healthBar;
+    private int MaxHealth;
+    private float MaxBar;
     
     //public IWeaponable x;
     private void OnEnable()
@@ -52,14 +58,19 @@ public class PlayerMovement : MonoBehaviour, IDamageable
         for (int i = 0; i < weaponLevels.Length; i++)
         {
             weaponLevels[i] = 0;
-            WeaponTimers[i] = weapons_[i].GetAttackSpeed();
+            WeaponTimers[i] = weapons_[i].GetAttackSpeed(0);
         }
         weaponLevels[startWeapon]= 1;
     }
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        healthTxt.text = $"health: {(int)HP}";
+        rbSprite = GetComponent<SpriteRenderer>();
+
+        HP += GameObject.Find("dataManager").GetComponent<DataManager>().SendData().HealthLevel*5;
+        MaxHealth = (int)HP;
+        MaxBar = healthBar.localScale.x;
+        //healthTxt.text = $"health: {(int)HP}";
 
     }
     private void Update()
@@ -75,13 +86,15 @@ public class PlayerMovement : MonoBehaviour, IDamageable
             if (WeaponTimers[i] <= 0)
             {
                 weapons_[i].DoAttack(weaponLevels[i]);
-                WeaponTimers[i] = weapons_[i].GetAttackSpeed();
+                WeaponTimers[i] = weapons_[i].GetAttackSpeed(weaponLevels[i]);
             }
         }
     }
     private void Walking()
     {
         rb.MovePosition(new Vector2(rb.position.x + moveAmt.x * moveSpeed, rb.position.y + moveAmt.y * moveSpeed));
+        if (moveAmt.x > 0) { rbSprite.flipX = false; }
+        else if (moveAmt.x<0){ rbSprite.flipX = true; }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -94,7 +107,8 @@ public class PlayerMovement : MonoBehaviour, IDamageable
     public void Takedamage(float damage)
     {
         HP -= damage;
-        healthTxt.text = $"health: {HP}";
+        //healthTxt.text = $"health: {HP}";
+        healthBar.localScale = new Vector3(MaxBar / MaxHealth * HP,healthBar.localScale.y);
         if (HP < 0) 
         {
             Die();
@@ -108,8 +122,6 @@ public class PlayerMovement : MonoBehaviour, IDamageable
 
     public void Die()
     {
-        //SceneManager.LoadScene("MenuScene");
-        Application.Quit();//
-        throw new NotImplementedException();
+        SceneManager.LoadScene("MenuScene");
     }
 }

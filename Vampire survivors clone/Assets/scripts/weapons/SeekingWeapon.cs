@@ -14,7 +14,6 @@ public class SeekingWeapon : MonoBehaviour, IWeaponable
         transform.position = player.position;
         if (Level == 0) { return; }
         bool aHit=false;
-        RaycastHit2D hit;
         // for SO.range: spherecast with a size of i
         //while (!aHit) { 
         for (int i = 0; i < SO.range; i++)
@@ -23,17 +22,24 @@ public class SeekingWeapon : MonoBehaviour, IWeaponable
             var h = Physics2D.CircleCastAll(transform.position, i, transform.forward);
             if (h.Length !=0)
             {
-                hit = h[0];
-                
-                if (hit.rigidbody.gameObject.GetComponent<IEnemyable>() != null)
+                for (int j = 0; j < h.Length; j++) {
+                    var y = h[j].rigidbody;
+                if (y == null) 
+                    { 
+                        Debug.Log("rigidbody not found"); 
+                        continue;
+                    }
+                if (y.gameObject.GetComponent<IEnemyable>() != null)
                 {
                         aHit = true;
                     // deque seekinginstance
                     GameObject newEnemy = PoolManager.instance.DeQueuPooledItem("seekingInstance");
                         newEnemy.transform.position = transform.position;
+                    newEnemy.GetComponent<SeekingWeaponInstance>().Damage = SO.attackPower* Mathf.Pow(SO.powerMod, Level);
                     //addforce towards goal
-                    Vector2 force = (hit.rigidbody.transform.position-transform.position).normalized;
+                    Vector2 force = (h[j].rigidbody.transform.position-transform.position).normalized;
                     newEnemy.GetComponent<Rigidbody2D>().AddForce(force * speed);
+                }
                 }
             }
         }
@@ -41,10 +47,10 @@ public class SeekingWeapon : MonoBehaviour, IWeaponable
         //throw new System.NotImplementedException();
     }
 
-    public float GetAttackSpeed()
+    public float GetAttackSpeed(int Level)
     {
         //throw new System.NotImplementedException();
-        return SO.attackSpeed;
+        return SO.attackSpeed * Mathf.Pow(SO.speedMod, Level);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

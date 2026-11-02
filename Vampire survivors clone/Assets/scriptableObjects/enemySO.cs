@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "enemySO", menuName = "Scriptable Objects/enemySO")]
 public class enemySO : ScriptableObject
 {
-    public string entityName;
+    public string prefabName;
     public float damage;
     public float health;
     public float speed;
@@ -12,7 +12,6 @@ public class enemySO : ScriptableObject
     public int dropRatio;
     public float dropChance;
 
-    public GameObject Object;
     public float powerIncrease;
 
     public Color Color;

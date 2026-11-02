@@ -22,9 +22,9 @@ public class ThrowingWeapon : MonoBehaviour, IWeaponable
         Destroy(axe, 3f);
     }
 
-    public float GetAttackSpeed()
+    public float GetAttackSpeed(int Level)
     {
-        return 100;
+        return SO.attackSpeed * Mathf.Pow(SO.speedMod, Level);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Throwing1
   m_EditorClassIdentifier: Assembly-CSharp::WeaponSO
   thisName: Throwing
-  attackPower: 5
+  attackPower: 3
   attackSpeed: 50
   range: 400
   distance: 750
-  powerMod: 0
-  speedMod: 0
-  rangeMod: 0
-  distanceMod: 0
+  powerMod: 1.5
+  speedMod: 0.6666667
+  rangeMod: 1
+  distanceMod: 1

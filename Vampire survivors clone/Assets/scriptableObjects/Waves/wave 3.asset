@@ -12,24 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1ef991f03e860f4ca33456bdf54a93e, type: 3}
   m_Name: wave 3
   m_EditorClassIdentifier: Assembly-CSharp::WaveSO
-  startTime: 500
+  startTime: 2944.5
   enemies:
   - enemy: {fileID: 5105659383325823780, guid: 28d43a4852baa5f4099d4ea628b593f3, type: 3}
     enemyData: {fileID: 11400000, guid: f9464a7bdab52814a8876f552011a455, type: 2}
-    count: 25
+    count: 24
   - enemy: {fileID: 5105659383325823780, guid: 28d43a4852baa5f4099d4ea628b593f3, type: 3}
     enemyData: {fileID: 11400000, guid: 45993a44c0dd8814d851e1bcde8160c1, type: 2}
-    count: 15
-  - enemy: {fileID: 3662438905180317015, guid: 59d1692a884563b4097d09ac197e933e, type: 3}
-    enemyData: {fileID: 11400000, guid: 74ec4ba782f3c934ea3fa844178c55f4, type: 2}
-    count: 1
+    count: 30
   - enemy: {fileID: 5105659383325823780, guid: 28d43a4852baa5f4099d4ea628b593f3, type: 3}
     enemyData: {fileID: 11400000, guid: b750f72a33bbacd49bb98afa121c4278, type: 2}
-    count: 5
-  - enemy: {fileID: 5105659383325823780, guid: 28d43a4852baa5f4099d4ea628b593f3, type: 3}
-    enemyData: {fileID: 11400000, guid: 45993a44c0dd8814d851e1bcde8160c1, type: 2}
-    count: 15
-  - enemy: {fileID: 5105659383325823780, guid: 28d43a4852baa5f4099d4ea628b593f3, type: 3}
-    enemyData: {fileID: 11400000, guid: b750f72a33bbacd49bb98afa121c4278, type: 2}
-    count: 5
-  spawnSpeed: 1
+    count: 12
+  spawnSpeed: 0.8

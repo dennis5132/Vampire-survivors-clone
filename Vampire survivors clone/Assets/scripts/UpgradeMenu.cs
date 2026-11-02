@@ -15,15 +15,21 @@ public class UpgradeMenu : MonoBehaviour
     [SerializeField] private float levelCostIncrease= 1.2f;
     private int pendingUpgrades;
 
-    [SerializeField] private TextMeshProUGUI XPTxt;
-    private int NextLevel()
+    //[SerializeField] private TextMeshProUGUI XPTxt;
+    [SerializeField] private RectTransform XPBar;
+    private float MaxBar;
+    private int NextLevel(bool isPrevious)
     {
         int level = 0;
         foreach (int i in player.weaponLevels) 
         {
             level += i;
+            
         }
+        if (isPrevious)
+        { level--; }
         //Debug.Log($"level: {player.weaponLevels[0]}, {levelCost * Mathf.Pow(levelCostIncrease, level)}");
+        if (level == 0) { return 0; }
         return (int) (levelCost*Mathf.Pow(levelCostIncrease, level));
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -31,24 +37,15 @@ public class UpgradeMenu : MonoBehaviour
     {
         menu = transform.GetChild(0).gameObject;
         menu.SetActive(false);
-        XPTxt.text = $"XP: 0%";
+
+        //currency = GameObject.Find("dataManager").GetComponent<DataManager>().SendData().XPLevel;
+        //XPTxt.text = $"XP: {(float)currency / (float)NextLevel() * 100}%";
+        MaxBar = XPBar.localScale.x;
+        XPBar.localScale = new Vector3(0, XPBar.localScale.y);
+        NewUpgrade();
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        //if (Keyboard.current.spaceKey.wasReleasedThisFrame && menu.activeSelf == false)
-        //{
-        //    Debug.Log("upgrade");
-        //    NewUpgrade();
-        //}
-        XPTxt.text = $"XP: {(float)currency / (float)NextLevel() * 100}%";
-        if (currency >= NextLevel())
-        {
-            pendingUpgrades++;
-            NewUpgrade();
-        }
-    }
+    
     private void NewUpgrade()
     {
         if (pendingUpgrades < 1 && !menu.activeSelf)
@@ -59,6 +56,7 @@ public class UpgradeMenu : MonoBehaviour
         menu.SetActive(true);
         for (int i = 0; i < pickables.Length; i++) 
         {
+            btn[i].onClick.RemoveAllListeners();
             int x = -1;
             while (pickables[i] == -1 && pickables.Contains(x)) 
             {
@@ -74,7 +72,7 @@ public class UpgradeMenu : MonoBehaviour
     private void selectWeapon(int x)
     {
         player.weaponLevels[x]++;
-        Debug.Log(player.weaponLevels[x]);
+        //Debug.Log(player.weaponLevels[x]);
         menu.SetActive(false);
         Time.timeScale = 1;
         foreach (Button btn in btn)
@@ -83,8 +81,15 @@ public class UpgradeMenu : MonoBehaviour
         }
         NewUpgrade();
     }
-    public void AddCurrency()
+    public void AddCurrency(int amount)
     {
-        currency++;
+        currency+=amount* GameObject.Find("dataManager").GetComponent<DataManager>().SendData().XPLevel;
+        XPBar.localScale = new Vector3((float)currency / (float)(NextLevel(false) - NextLevel(true)) * MaxBar, XPBar.localScale.y);
+        if (currency >= NextLevel(false))
+        {
+            pendingUpgrades++;
+            NewUpgrade();
+        }
     }
+    //public bool CanUpgrade()=> 
 }

@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fb96af1ccc4bf149bb2c9194bb4537c, type: 3}
   m_Name: UniqueEnemyA
   m_EditorClassIdentifier: Assembly-CSharp::enemySO
-  entityName: uniqueEnemyA
+  prefabName: 
   damage: 10
   health: 100
   speed: 0.001
   spawnTime: 1
-  dropRatio: 10
-  Object: {fileID: 3662438905180317015, guid: 59d1692a884563b4097d09ac197e933e, type: 3}
+  dropRatio: 20
+  dropChance: 5
   powerIncrease: 1.5
   Color: {r: 0.9784215, g: 0.42830187, b: 1, a: 1}
