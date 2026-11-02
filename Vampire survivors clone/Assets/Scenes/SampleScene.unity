@@ -1941,7 +1941,7 @@ MonoBehaviour:
   - {fileID: 1446984974}
   - {fileID: 878693058}
   - {fileID: 1062983672}
-  startWeapon: 1
+  startWeapon: 3
   healthBar: {fileID: 335269852}
 --- !u!70 &1282182061
 CapsuleCollider2D:
@@ -2509,7 +2509,7 @@ MonoBehaviour:
     obj: {fileID: 4942174179124868562, guid: 60dcc861d789c8d44bc310267bef03e7, type: 3}
     amount: 400
     parent: {fileID: 1653116747}
-  - name: UniqueEnemyA
+  - name: uniqueEnemyAManager
     obj: {fileID: 3662438905180317015, guid: 59d1692a884563b4097d09ac197e933e, type: 3}
     amount: 2
     parent: {fileID: 177285368}

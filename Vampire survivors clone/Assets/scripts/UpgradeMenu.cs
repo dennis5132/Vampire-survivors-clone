@@ -83,7 +83,7 @@ public class UpgradeMenu : MonoBehaviour
     }
     public void AddCurrency(int amount)
     {
-        currency+=amount* GameObject.Find("dataManager").GetComponent<DataManager>().SendData().XPLevel;
+        currency+=amount* GameObject.Find("dataManager").GetComponent<DataManager>().SendData().XPLevel+1;
         XPBar.localScale = new Vector3((float)currency / (float)(NextLevel(false) - NextLevel(true)) * MaxBar, XPBar.localScale.y);
         if (currency >= NextLevel(false))
         {

@@ -15,4 +15,5 @@ public class enemySO : ScriptableObject
     public float powerIncrease;
 
     public Color Color;
+    public Sprite mySprite;
 }

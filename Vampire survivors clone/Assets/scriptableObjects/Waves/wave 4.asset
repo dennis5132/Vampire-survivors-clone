@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WaveSO
   startTime: 10686
   enemies:
-  - enemy: {fileID: 5105659383325823780, guid: 674242960203f4342bdc1e7413b8a191, type: 3}
+  - enemy: {fileID: 3662438905180317015, guid: 59d1692a884563b4097d09ac197e933e, type: 3}
     enemyData: {fileID: 11400000, guid: 74ec4ba782f3c934ea3fa844178c55f4, type: 2}
     count: 1
   - enemy: {fileID: 5105659383325823780, guid: 28d43a4852baa5f4099d4ea628b593f3, type: 3}

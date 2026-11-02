@@ -14,16 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WaveSO
   startTime: 1
   enemies:
-  - enemy: {fileID: 5105659383325823780, guid: 28d43a4852baa5f4099d4ea628b593f3, type: 3}
-    enemyData: {fileID: 11400000, guid: 45993a44c0dd8814d851e1bcde8160c1, type: 2}
+  - enemy: {fileID: 3662438905180317015, guid: 59d1692a884563b4097d09ac197e933e, type: 3}
+    enemyData: {fileID: 11400000, guid: 74ec4ba782f3c934ea3fa844178c55f4, type: 2}
     count: 1
-  - enemy: {fileID: 5105659383325823780, guid: 28d43a4852baa5f4099d4ea628b593f3, type: 3}
-    enemyData: {fileID: 11400000, guid: b750f72a33bbacd49bb98afa121c4278, type: 2}
-    count: 1
-  - enemy: {fileID: 5105659383325823780, guid: 28d43a4852baa5f4099d4ea628b593f3, type: 3}
-    enemyData: {fileID: 11400000, guid: 10789379bd41e5f4890d8d5271112b2c, type: 2}
-    count: 1
-  - enemy: {fileID: 5105659383325823780, guid: 28d43a4852baa5f4099d4ea628b593f3, type: 3}
-    enemyData: {fileID: 11400000, guid: e322bdadfbeac6548a339c07ef1a30ea, type: 2}
-    count: 1
-  spawnSpeed: 1
+  spawnSpeed: 0.01

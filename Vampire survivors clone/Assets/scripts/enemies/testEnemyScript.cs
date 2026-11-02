@@ -46,6 +46,7 @@ public class testEnemyScript : MonoBehaviour,IEnemyable,IDamageable
         powerUp = Mathf.Pow(data.powerIncrease,wave);
         HP = data.health*powerUp;
         gameObject.GetComponent<SpriteRenderer>().color = SO.Color;
+        gameObject.GetComponent<SpriteRenderer>().sprite = SO.mySprite;
     }
 
     public void Takedamage(float damage)

@@ -21,3 +21,4 @@ MonoBehaviour:
   dropChance: 5
   powerIncrease: 0
   Color: {r: 0.25882354, g: 0.09411764, b: 0.24969949, a: 1}
+  mySprite: {fileID: -1722043116722673316, guid: 113511fe3452216449e8bd8320e3309c, type: 3}

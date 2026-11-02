@@ -39,6 +39,7 @@ public class SeekingWeapon : MonoBehaviour, IWeaponable
                     //addforce towards goal
                     Vector2 force = (h[j].rigidbody.transform.position-transform.position).normalized;
                     newEnemy.GetComponent<Rigidbody2D>().AddForce(force * speed);
+                        break;
                 }
                 }
             }
