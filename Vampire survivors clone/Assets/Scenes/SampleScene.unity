@@ -1941,7 +1941,7 @@ MonoBehaviour:
   - {fileID: 1446984974}
   - {fileID: 878693058}
   - {fileID: 1062983672}
-  startWeapon: 3
+  startWeapon: 1
   healthBar: {fileID: 335269852}
 --- !u!70 &1282182061
 CapsuleCollider2D:
